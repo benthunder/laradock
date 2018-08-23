@@ -1,0 +1,6 @@
+192.168.99.1 - - [23/Aug/2018:01:50:50 +0000] "GET / HTTP/1.1" 200 28125 "-" "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"
+192.168.99.1 - - [23/Aug/2018:01:50:51 +0000] "GET /favicon.ico HTTP/1.1" 200 28105 "http://project1.test/" "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"
+192.168.99.1 - - [23/Aug/2018:01:51:21 +0000] "GET / HTTP/1.1" 200 28138 "-" "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"
+192.168.99.1 - - [23/Aug/2018:01:51:22 +0000] "GET /favicon.ico HTTP/1.1" 200 28134 "http://project1.test/" "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"
+192.168.99.1 - - [23/Aug/2018:01:51:38 +0000] "GET / HTTP/1.1" 200 41 "-" "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"
+192.168.99.1 - - [23/Aug/2018:01:51:39 +0000] "GET /favicon.ico HTTP/1.1" 200 41 "http://project1.test/" "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"
