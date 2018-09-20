@@ -31,7 +31,6 @@ sed -i "s/app_access.log/$site_name\_access.log/g" nginx/sites/$site_name.conf;
 
 echo "Site Name: $site_name.local";
 echo "Dir Path: $parent_dir/$site_name";
-
-docker-compose up -d apache2 php-fpm mysql phpmyadmin workspace
+echo "Run docker compose\n";
 code $parent_dir/$site_name
 exit 1;
