@@ -349,7 +349,7 @@ RUN if [ ${INSTALL_MYSQLI} = true ]; then \
 ;fi
 
 ###########################################################################
-# Mysqli Modifications:
+# Mysql Modifications:
 ###########################################################################
 
 ARG INSTALL_MYSQL=false
