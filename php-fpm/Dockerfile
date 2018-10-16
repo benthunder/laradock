@@ -349,6 +349,16 @@ RUN if [ ${INSTALL_MYSQLI} = true ]; then \
 ;fi
 
 ###########################################################################
+# Mysqli Modifications:
+###########################################################################
+
+ARG INSTALL_MYSQL=false
+
+RUN if [ ${INSTALL_MYSQL} = true ]; then \
+    docker-php-ext-install mysql \
+;fi
+
+###########################################################################
 # Tokenizer Modifications:
 ###########################################################################
 
@@ -514,3 +524,4 @@ WORKDIR /var/www
 CMD ["php-fpm"]
 
 EXPOSE 9000
+
