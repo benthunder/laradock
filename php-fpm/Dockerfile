@@ -354,7 +354,7 @@ RUN if [ ${INSTALL_MYSQLI} = true ]; then \
 
 ARG INSTALL_MYSQL=false
 
-RUN if [ ${INSTALL_MYSQL} = true ]; then \
+RUN if [ ${INSTALL_MYSQL} = true ]  && [ ${LARADOCK_PHP_VERSION} = '5.6' ]; then \
     docker-php-ext-install mysql \
 ;fi
 

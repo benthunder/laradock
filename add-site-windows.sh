@@ -33,6 +33,7 @@ sed -i "s/app_access.log/$site_name\_access.log/g" nginx/sites/$site_name.conf;
 
 echo "Site Name: $site_name.local";
 echo "Dir Path: $parent_dir/$site_name";
-echo "Run docker compose\n";
+echo "Press any key to continues ... !";
+read anykey;
 code $parent_dir/$site_name
 exit 1;
