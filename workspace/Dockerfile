@@ -184,7 +184,9 @@ ARG INSTALL_SOAP=false
 
 RUN if [ ${INSTALL_SOAP} = true ]; then \
   # Install the PHP SOAP extension
-  apt-get -y install libxml2-dev php${LARADOCK_PHP_VERSION}-soap \
+  apt-get -y install libxml2-dev php${LARADOCK_PHP_VERSION}-soap && \
+  echo "extension=soap.so" >> /etc/php/${LARADOCK_PHP_VERSION}/mods-available/soap.ini && \
+    phpenmod soap \
 ;fi
 
 ###########################################################################
@@ -337,6 +339,20 @@ RUN if [ ${INSTALL_PHPREDIS} = true ]; then \
     echo "extension=redis.so" >> /etc/php/${LARADOCK_PHP_VERSION}/mods-available/redis.ini && \
     phpenmod redis \
 ;fi
+
+###########################################################################
+# PHP OAUTH EXTENSION
+###########################################################################
+
+ARG INSTALL_PHPOAUTH=false
+
+RUN if [ ${INSTALL_PHPOAUTH} = true ]; then \
+    # Install Php OAuth extension
+    printf "\n" | pecl -q install -o -f oauth-1.2.3 && \
+    echo "extension=oauth.so" >> /etc/php/${LARADOCK_PHP_VERSION}/mods-available/oauth.ini && \
+    phpenmod oauth \
+;fi
+
 
 ###########################################################################
 # Swoole EXTENSION

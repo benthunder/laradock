@@ -149,6 +149,20 @@ RUN if [ ${INSTALL_PHPREDIS} = true ]; then \
     &&  docker-php-ext-enable redis \
 ;fi
 
+
+###########################################################################
+# PHP OAuth EXTENSION
+###########################################################################
+
+ARG INSTALL_OAUTH=true
+
+RUN if [ ${INSTALL_OAUTH} = true ]; then \
+    # Install Php Redis Extension
+    printf "\n" | pecl install -o -f oauth-1.2.3 \
+    &&  rm -rf /tmp/pear \
+    &&  docker-php-ext-enable oauth \
+;fi
+
 ###########################################################################
 # Swoole EXTENSION
 ###########################################################################
