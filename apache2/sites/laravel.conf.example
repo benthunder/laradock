@@ -13,6 +13,6 @@
     </IfVersion>
   </Directory>
 
-  ErrorLog /var/www/project_name/logs/apache2/project_name.error.log
-  CustomLog /var/www/project_name/logs/apache2/project_name.access.log common
+  ErrorLog /var/www/logs/apache2/project_name.error.log
+  CustomLog /var/www/logs/apache2/project_name.access.log common
 </VirtualHost>
