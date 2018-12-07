@@ -1,9 +1,9 @@
 <VirtualHost *:80>
-  ServerName sample.test
-  DocumentRoot /var/www/sample/public/
+  ServerName project_name.local
+  DocumentRoot /var/www/project_name/
   Options Indexes FollowSymLinks
 
-  <Directory "/var/www/sample/public/">
+  <Directory "/var/www/project_name/">
     AllowOverride All
     <IfVersion < 2.4>
       Allow from all
@@ -13,4 +13,6 @@
     </IfVersion>
   </Directory>
 
+  ErrorLog /var/www/project_name/logs/apache2/project_name.error.log
+  CustomLog /var/www/project_name/logs/apache2/project_name.access.log common
 </VirtualHost>
