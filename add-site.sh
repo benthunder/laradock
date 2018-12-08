@@ -72,6 +72,19 @@ else
     printf "%s is exist\n"   "nginx/sites/$site_name.conf"
 fi
 
+#   Create error
+if [ ! -f "../log/nginx/${site_name}.error.log" ]; then
+    touch "../log/nginx/${site_name}.error.log"
+else
+    printf "%s is exist\n"   "../log/nginx/${site_name}.error.log"
+fi
+
+if [ ! -f "../log/apache2/${site_name}.error.log" ]; then
+    touch "../log/apache2/${site_name}.error.log"
+else
+    printf "%s is exist\n"   "../log/apache2/${site_name}.error.log"
+fi
+
 echo 'Done , restart docker apache or nginx container and happy coding :)'
 read -r
 exit 1
