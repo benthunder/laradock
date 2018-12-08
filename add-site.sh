@@ -1,22 +1,6 @@
 #!/bin/bash
 
-
-#   get project_name
-#   get type of project
-#
-#   validate project_name
-#       if [ has name ] - don't edit hosts file
-#   validate project_name_dir
-#       if [ has dir ] - don't creat
-#   coppy file host by type
-#   replace text in file
-#   create coppy hosts file
-#   
-#   create project_root_dir
-#   create project_error_dir
-#   
-
-# This shell to quick command create a site in nginx and apache
+# This shell to quick command create a site in nginx and apache on linux
 
 #   Get file name
 echo 'Enter your site name (name of project root)? : ';
@@ -42,17 +26,20 @@ printf "%s\n" "${site_type_select}";
 
 #   Validate site name
 site_host_name="127.0.0.1   ${site_name}.local"
+site_host_name_all_port="::1   ${site_name}.local"
+
 if grep -Fxq "${site_host_name}" /etc/hosts; then
     printf "%s is exists\n" "${site_host_name}"
 else
     sudo cp /etc/hosts /etc/hosts.bak
     echo "${site_host_name}" | sudo tee - a /etc/hosts
+    echo "${site_host_name_all_port}" | sudo tee - a /etc/hosts
     printf "%s\n"   "${site_host_name}"
 fi
 
 parent_dir=$(dirname "$PWD")
 if [ -d "$parent_dir/$site_name" ]; then
-    printf 'Folder %s is Exist\n' $site_name;
+    printf 'Folder %s is Exist\n' "$site_name";
 else
     mkdir "$parent_dir/$site_name"
     printf "project root %s\n"   "$parent_dir/$site_name"
