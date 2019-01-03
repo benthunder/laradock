@@ -3,8 +3,8 @@ server {
     listen 80;
     listen [::]:80;
 
-    server_name app.test;
-    root /var/www/app;
+    server_name project_name.local;
+    root /var/www/project_name;
     index index.php index.html index.htm;
 
     location / {
@@ -32,6 +32,6 @@ server {
         log_not_found off;
     }
 
-    error_log /var/log/nginx/app_error.log;
-    access_log /var/log/nginx/app_access.log;
+    error_log /var/www/log/nginx/project_name.error.log;
+    access_log /var/www/log/nginx/project_name.access.log;
 }

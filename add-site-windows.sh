@@ -1,39 +1,78 @@
 #!/bin/bash
 
-# This shell to quick command create a site in nginx and apache
+# This shell to quick command create a site in nginx and apache on windows
+
+#   Get file name
 echo 'Enter your site name (name of project root)? : ';
-read -r site_name
+read -r site_name;
+
+#   Get file type
+site_type_list=("symfony" "laravel" "normal")
+site_type_list_length=${#site_type_list[*]}
+for (( i=0; i<=$(( site_type_list_length -1 )); i++ ))
+do 
+    printf "%s.%s\n" "$(( i+1 ))" "${site_type_list[${i}]}"; 
+done
+
+read -r site_type_number;
+site_type_number=$site_type_number-1;
+site_type_select="${site_type_list[$site_type_number]}";
+
+#   Validate site type
+if [[ -z $site_type_select ]]; then
+    printf "Please ! enter valid site type\n"; exit 1
+fi
+printf "%s\n" "${site_type_select}";
+
+#   Validate site name
+site_host_name="127.0.0.1   ${site_name}.local"
+site_host_name_all_port="::1   ${site_name}.local"
+
+if grep -Fxq "${site_host_name}" /etc/hosts; then
+    printf "%s is exists\n" "${site_host_name}"
+else
+    # sudo cp /etc/hosts /etc/hosts.bak
+    # echo "${site_host_name}" | sudo tee - a /etc/hosts
+    # echo "${site_host_name_all_port}" | sudo tee - a /etc/hosts
+    printf "%s\n"   "${site_host_name}"
+    printf "%s\n"   "${site_host_name_all_port}"
+fi
 
 parent_dir=$(dirname "$PWD")
-# Check exist file in project root
-if [ ! -d "$parent_dir/$site_name" ]; then
-    mkdir "$parent_dir/$site_name"
-    # Add to hosts
-    echo 'coppy to this to C\:\\Windows\\System32\\drivers\\etc\\hosts'
-    echo "127.0.0.1 $site_name.local"
-    echo "::1       $site_name.local"
-
+if [ -d "$parent_dir/$site_name" ]; then
+    printf 'Folder %s is Exist\n' "$site_name";
 else
-    echo 'Folder Exist'
+    mkdir "$parent_dir/$site_name"
+    printf "project root %s\n"   "$parent_dir/$site_name"
 fi
-# Create site in apache
-cp "apache2/sites/sample.conf.example" "apache2/sites/$site_name.conf"
 
-sed -i "s/sample.test/$site_name.local/g" "apache2/sites/$site_name.conf"
-sed -i "s/\/var\/www\/sample\/public\//\/var\/www\/$site_name\//g" "apache2/sites/$site_name.conf"
+if [ ! -f "apache2/sites/$site_name.conf" ]; then
+    cp "apache2/sites/${site_type_select}.conf.example" "apache2/sites/$site_name.conf"
+    sed -i "s/project_name/${site_name}/g"  "apache2/sites/$site_name.conf"
+else
+    printf "%s is exist\n"   "apache2/sites/$site_name.conf"
+fi
 
-# Create site in nginx
+if [ ! -f "nginx/sites/$site_name.conf" ]; then
+    cp "nginx/sites/${site_type_select}.conf.example" "nginx/sites/$site_name.conf"
+    sed -i "s/project_name/${site_name}/g"  "nginx/sites/$site_name.conf"
+else
+    printf "%s is exist\n"   "nginx/sites/$site_name.conf"
+fi
 
-cp "nginx/sites/app.conf.example" "nginx/sites/$site_name.conf"
+#   Create error
+if [ ! -f "../log/nginx/${site_name}.error.log" ]; then
+    touch "../log/nginx/${site_name}.error.log"
+else
+    printf "%s is exist\n"   "../log/nginx/${site_name}.error.log"
+fi
 
-sed -i "s/server_name app.test/server_name $site_name.local/g" "nginx/sites/$site_name.conf"
-sed -i "s/root \/var\/www\/app/root \/var\/www\/$site_name/g" "nginx/sites/$site_name.conf"
-sed -i "s/app_error.log/$site_name\_error.log/g" "nginx/sites/$site_name.conf"
-sed -i "s/app_access.log/$site_name\_access.log/g" "nginx/sites/$site_name.conf"
+if [ ! -f "../log/apache2/${site_name}.error.log" ]; then
+    touch "../log/apache2/${site_name}.error.log"
+else
+    printf "%s is exist\n"   "../log/apache2/${site_name}.error.log"
+fi
 
-echo "Site Name: $site_name.local"
-echo "Dir Path: $parent_dir/$site_name"
-echo "Press any key to continues ... !"
-read -r 
-code "$parent_dir/$site_name"
+echo 'Done , restart docker apache or nginx container and happy coding :)'
+read -r
 exit 1

@@ -156,8 +156,8 @@ RUN if [ ${INSTALL_PHPREDIS} = true ]; then \
 
 ARG INSTALL_OAUTH=true
 
-RUN if [ ${INSTALL_OAUTH} = true ]; then \
-    # Install Php Redis Extension
+RUN if [ ${INSTALL_OAUTH} = true ] && [ ${PHP_VERSION} = '5.6' ] ; then \
+    # Install Php Oauth Extension
     printf "\n" | pecl install -o -f oauth-1.2.3 \
     &&  rm -rf /tmp/pear \
     &&  docker-php-ext-enable oauth \
