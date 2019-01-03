@@ -184,9 +184,7 @@ ARG INSTALL_SOAP=false
 
 RUN if [ ${INSTALL_SOAP} = true ]; then \
   # Install the PHP SOAP extension
-  apt-get -y install libxml2-dev php${LARADOCK_PHP_VERSION}-soap && \
-  echo "extension=soap.so" >> /etc/php/${LARADOCK_PHP_VERSION}/mods-available/soap.ini && \
-    phpenmod soap \
+  apt-get -y install libxml2-dev php${LARADOCK_PHP_VERSION}-soap \
 ;fi
 
 ###########################################################################
