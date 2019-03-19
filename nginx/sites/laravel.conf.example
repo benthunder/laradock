@@ -38,6 +38,6 @@ server {
         log_not_found off;
     }
 
-    error_log /var/log/nginx/project_name_error.log;
-    access_log /var/log/nginx/project_name_access.log;
+    error_log /var/log/nginx/project_name.error.log;
+    access_log /var/log/nginx/project_name.access.log;
 }
