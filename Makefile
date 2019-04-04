@@ -1,6 +1,6 @@
 up: docker-compose.yml .env
 	docker-compose up -d mysql nginx php-fpm workspace phpmyadmin
-	php-fpm/stop
+	php-fpm/xdebug stop
 	
 restart: docker-compose.yml .env
 	docker-compose restart mysql nginx php-fpm workspace phpmyadmin
