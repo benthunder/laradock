@@ -414,6 +414,20 @@ RUN if [ ${INSTALL_PHPREDIS} = true ]; then \
 ;fi
 
 ###########################################################################
+# PHP OAUTH EXTENSION
+###########################################################################
+
+ARG INSTALL_PHPOAUTH=false
+
+RUN if [ ${INSTALL_PHPOAUTH} = true ] && [ ${PHP_VERSION} = '5.6' ] ; then \
+    # Install Php OAuth extension
+    printf "\n" | pecl -q install -o -f oauth-1.2.3 && \
+    echo "extension=oauth.so" >> /etc/php/${LARADOCK_PHP_VERSION}/mods-available/oauth.ini && \
+    phpenmod oauth \
+;fi
+
+
+###########################################################################
 # Swoole EXTENSION
 ###########################################################################
 

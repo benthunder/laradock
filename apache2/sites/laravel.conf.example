@@ -1,9 +1,16 @@
 <VirtualHost *:80>
   ServerName project_name.local
+<<<<<<< HEAD
   DocumentRoot /var/www/project_name/web/
   Options Indexes FollowSymLinks
 
   <Directory "/var/www/project_name/web/">
+=======
+  DocumentRoot /var/www/project_name/public/
+  Options Indexes FollowSymLinks
+
+  <Directory "/var/www/project_name/public/">
+>>>>>>> test_master
     AllowOverride All
     <IfVersion < 2.4>
       Allow from all

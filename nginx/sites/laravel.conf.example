@@ -3,6 +3,7 @@ server {
     listen 80;
     listen [::]:80;
 
+<<<<<<< HEAD
     # For https
     # listen 443 ssl;
     # listen [::]:443 ssl ipv6only=on;
@@ -10,6 +11,9 @@ server {
     # ssl_certificate_key /etc/nginx/ssl/default.key;
 
     server_name project_name.local;
+=======
+    server_name project_name.test;
+>>>>>>> test_master
     root /var/www/project_name/public;
     index index.php index.html index.htm;
 
@@ -38,6 +42,11 @@ server {
         log_not_found off;
     }
 
+<<<<<<< HEAD
     error_log /var/log/nginx/project_name.error.log;
     access_log /var/log/nginx/project_name.access.log;
+=======
+    error_log /var/www/log/nginx/project_name_error.log;
+    access_log /var/www/log/nginx/project_name_access.log;
+>>>>>>> test_master
 }

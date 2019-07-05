@@ -1,17 +1,13 @@
 #!/bin/bash
 
-# This shell to quick command create a site in nginx and apache on linux
+# This shell to quick command create a site in nginx and apache on windows
 
 #   Get file name
 echo 'Enter your site name (name of project root)? : ';
 read -r site_name;
 
 #   Get file type
-<<<<<<< HEAD
-site_type_list=("symfony" "laravel" "normal" "wordpress")
-=======
 site_type_list=("symfony" "laravel" "normal")
->>>>>>> test_master
 site_type_list_length=${#site_type_list[*]}
 for (( i=0; i<=$(( site_type_list_length -1 )); i++ ))
 do 
@@ -35,15 +31,11 @@ site_host_name_all_port="::1   ${site_name}.local"
 if grep -Fxq "${site_host_name}" /etc/hosts; then
     printf "%s is exists\n" "${site_host_name}"
 else
-    sudo cp /etc/hosts /etc/hosts.bak
-<<<<<<< HEAD
-    echo "${site_host_name}" | sudo tee -a /etc/hosts
-    echo "${site_host_name_all_port}" | sudo tee -a /etc/hosts
-=======
-    echo "${site_host_name}" | sudo tee - a /etc/hosts
-    echo "${site_host_name_all_port}" | sudo tee - a /etc/hosts
->>>>>>> test_master
+    # sudo cp /etc/hosts /etc/hosts.bak
+    # echo "${site_host_name}" | sudo tee - a /etc/hosts
+    # echo "${site_host_name_all_port}" | sudo tee - a /etc/hosts
     printf "%s\n"   "${site_host_name}"
+    printf "%s\n"   "${site_host_name_all_port}"
 fi
 
 parent_dir=$(dirname "$PWD")
@@ -69,41 +61,18 @@ else
 fi
 
 #   Create error
-<<<<<<< HEAD
-# Nginx
-=======
->>>>>>> test_master
 if [ ! -f "../log/nginx/${site_name}.error.log" ]; then
     touch "../log/nginx/${site_name}.error.log"
 else
     printf "%s is exist\n"   "../log/nginx/${site_name}.error.log"
 fi
 
-<<<<<<< HEAD
-if [ ! -f "../log/nginx/${site_name}.access.log" ]; then
-    touch "../log/nginx/${site_name}.access.log"
-else
-    printf "%s is exist\n"   "../log/nginx/${site_name}.access.log"
-fi
-
-# Apache
-=======
->>>>>>> test_master
 if [ ! -f "../log/apache2/${site_name}.error.log" ]; then
     touch "../log/apache2/${site_name}.error.log"
 else
     printf "%s is exist\n"   "../log/apache2/${site_name}.error.log"
 fi
 
-<<<<<<< HEAD
-if [ ! -f "../log/apache2/${site_name}.access.log" ]; then
-    touch "../log/apache2/${site_name}.access.log"
-else
-    printf "%s is exist\n"   "../log/apache2/${site_name}.access.log"
-fi
-
-=======
->>>>>>> test_master
 echo 'Done , restart docker apache or nginx container and happy coding :)'
 read -r
 exit 1

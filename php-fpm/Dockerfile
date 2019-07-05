@@ -198,6 +198,20 @@ RUN if [ ${INSTALL_PHPREDIS} = true ]; then \
     &&  docker-php-ext-enable redis \
 ;fi
 
+
+###########################################################################
+# PHP OAuth EXTENSION
+###########################################################################
+
+ARG INSTALL_OAUTH=true
+
+RUN if [ ${INSTALL_OAUTH} = true ] && [ ${PHP_VERSION} = '5.6' ] ; then \
+    # Install Php Oauth Extension
+    printf "\n" | pecl install -o -f oauth-1.2.3 \
+    &&  rm -rf /tmp/pear \
+    &&  docker-php-ext-enable oauth \
+;fi
+
 ###########################################################################
 # Swoole EXTENSION
 ###########################################################################
@@ -411,6 +425,28 @@ RUN if [ ${INSTALL_MYSQLI} = true ]; then \
     docker-php-ext-install mysqli \
 ;fi
 
+<<<<<<< HEAD
+=======
+###########################################################################
+# Mysql Modifications:
+###########################################################################
+
+ARG INSTALL_MYSQL=false
+
+RUN if [ ${INSTALL_MYSQL} = true ]  && [ ${LARADOCK_PHP_VERSION} = '5.6' ]; then \
+    docker-php-ext-install mysql \
+;fi
+
+###########################################################################
+# Tokenizer Modifications:
+###########################################################################
+
+ARG INSTALL_TOKENIZER=false
+
+RUN if [ ${INSTALL_TOKENIZER} = true ]; then \
+    docker-php-ext-install tokenizer \
+;fi
+>>>>>>> test_master
 
 ###########################################################################
 # Human Language and Character Encoding Support:

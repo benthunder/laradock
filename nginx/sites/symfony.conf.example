@@ -3,6 +3,7 @@ server {
     listen 80;
     listen [::]:80;
 
+<<<<<<< HEAD
     # For https
     # listen 443 ssl;
     # listen [::]:443 ssl ipv6only=on;
@@ -11,6 +12,10 @@ server {
 
     server_name project_name.test;
     root /var/www/projects/project_name/web;
+=======
+    server_name project_name.local;
+    root /var/www/project_name/web;
+>>>>>>> test_master
     index index.php index.html index.htm;
 
     location / {
@@ -37,6 +42,6 @@ server {
         fastcgi_param HTTPS off;
     }
 
-    error_log /var/log/nginx/symfony_error.log;
-    access_log /var/log/nginx/symfony_access.log;
+    error_log /var/www/log/nginx/project_name_error.log;
+    access_log /var/www/log/nginx/project_name_access.log;
 }
