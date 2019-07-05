@@ -188,6 +188,22 @@ RUN if [ ${INSTALL_SOAP} = true ]; then \
 ;fi
 
 ###########################################################################
+# OAUTH:
+###########################################################################
+
+USER root
+
+ARG INSTALL_OAUTH=false
+
+RUN if [ ${INSTALL_OAUTH} = true ]; then \
+  # Install the PHP OAUTH extension
+  # Install Php Redis extension
+    printf "\n" | pecl install -o -f oauth && \
+    echo "extension=oauth.so" >> /etc/php/${LARADOCK_PHP_VERSION}/mods-available/oauth.ini && \
+    phpenmod oauth \
+;fi
+
+###########################################################################
 # LDAP:
 ###########################################################################
 
@@ -796,6 +812,14 @@ RUN if [ ${INSTALL_DUSK_DEPS} = true ]; then \
   && mv chromedriver /usr/local/bin/ \
   && rm chromedriver_linux64.zip \
 ;fi
+
+###########################################################################
+# Install fish:
+###########################################################################
+
+RUN apt-add-repository ppa:fish-shell/release-3 && \
+  apt-get update && apt-get -y upgrade && \
+  apt-get -y install fish
 
 ###########################################################################
 # Check PHP version:
